@@ -289,7 +289,7 @@
                         Cursor="Hand"
                         Grid.Column="2"
                         Margin="0,50,0,0"
-                        Click="btnClose_Click"
+                        Click="btnLogin_Click"
                         TabIndex="3"
                         >
 

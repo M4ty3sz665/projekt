@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace projekt
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for kopapirollo.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class kopapirollo : Window
     {
-        public MainWindow()
+        public kopapirollo()
         {
             InitializeComponent();
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -41,18 +39,6 @@ namespace projekt
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            if (true)
-            {
-                this.Hide();
-                kopapirollo newWindow = new kopapirollo();
-                newWindow.Show(); // Megnyitja az új ablakot
-
-            }
-
         }
     }
 }
