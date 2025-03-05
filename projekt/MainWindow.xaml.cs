@@ -49,7 +49,7 @@ namespace projekt
             {
                 this.Hide();
                 kopapirollo newWindow = new kopapirollo();
-                newWindow.Show(); // Megnyitja az új ablakot
+                newWindow.Show(); 
 
             }
 

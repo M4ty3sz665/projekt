@@ -196,8 +196,44 @@
 
                 </Grid>
 
+                <Button  HorizontalAlignment="Left" Margin="102,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="92" Height="79" Click="paper_Click">
+                    <Button.Background
+                        
+                        >
+                        <ImageBrush ImageSource="paper.jpg" />
+                    </Button.Background>
 
-                
+                </Button>
+
+                <Button  HorizontalAlignment="Left" Margin="352,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="92" Height="79" Click="scissors_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="scissors.jpg"/>
+                    </Button.Background>
+
+                </Button>
+
+                <Button  HorizontalAlignment="Left" Margin="596,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="92" Height="79" Click="rock_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="rock.jpg"/>
+                    </Button.Background>
+                </Button>
+
+                <TextBlock HorizontalAlignment="Left" Margin="26,33,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Text="Válassz a megadottak közül és játsz a gép ellen egy vagy több kő-paír-olló játékot!"
+                           Foreground="White"
+                           FontSize="20" Width="744"/>
+
+                <Label Content="Győzelem:" HorizontalAlignment="Left" Margin="208,118,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="6.716,0.338" Foreground="White" FontSize="18"/>
+
+
+                <Label Content="Vesztéseg:" HorizontalAlignment="Left" Margin="352,118,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+
+                <Label Content="Döntetlen:" HorizontalAlignment="Left" Margin="504,118,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18" />
+
+                <Label Content="win/lsoe/draw" HorizontalAlignment="Left" Margin="352,345,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+
+
+
+
 
             </Grid>
 

@@ -40,5 +40,20 @@ namespace projekt
         {
             Application.Current.Shutdown();
         }
+
+        private void paper_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void scissors_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rock_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
