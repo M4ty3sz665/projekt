@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace projekt
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -30,29 +17,30 @@ namespace projekt
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
+                ApplyOpacityAnimation(0.8, 1.0, 0.3);
             }
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+        private void btnClose_Click(object sender, RoutedEventArgs e) => ApplyCloseAnimation();
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (true)
-            {
-                this.Hide();
-                kopapirollo newWindow = new kopapirollo();
-                newWindow.Show(); 
+            this.Hide();
+            new kopapirollo().Show();
+        }
 
-            }
+        private void ApplyOpacityAnimation(double from, double to, double duration)
+        {
+            BeginAnimation(OpacityProperty, new DoubleAnimation(from, to, TimeSpan.FromSeconds(duration)));
+        }
 
+        private void ApplyCloseAnimation()
+        {
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
+            fadeOut.Completed += (s, e) => Application.Current.Shutdown();
+            BeginAnimation(OpacityProperty, fadeOut);
         }
     }
 }

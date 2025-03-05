@@ -281,7 +281,6 @@
 
                     <Button
                         x:Name="btnLogin"
-                        
                         Content="LOG IN"
                         Foreground="White"
                         FontSize="15"
@@ -290,32 +289,31 @@
                         Grid.Column="2"
                         Margin="0,50,0,0"
                         Click="btnLogin_Click"
-                        TabIndex="3"
-                        >
+                        TabIndex="3">
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter
-                                    Property="Background" Value="#462Ad8"
-                                    >
-
+                                <Setter Property="Background" Value="#462Ad8"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#000000" BlurRadius="5" ShadowDepth="0"/>
+                                    </Setter.Value>
                                 </Setter>
                                 <Style.Triggers>
-                                    <Trigger
-                                        Property="IsMouseOver" Value="True"
-                                        
-                                        >
-                                        <Setter
-                                            Property="Background" Value="#8a16c1"
-                                            >
-
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#8a16c1"/>
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect Color="#8a16c1" BlurRadius="15" ShadowDepth="0"/>
+                                            </Setter.Value>
                                         </Setter>
                                     </Trigger>
-                                    <Trigger
-                                        Property="IsKeyboardFocused" Value="True">
-                                        <Setter 
-                                            Property="Background" Value="#8a16c1">
-                                            
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="#8a16c1"/>
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect Color="#8a16c1" BlurRadius="20" ShadowDepth="0"/>
+                                            </Setter.Value>
                                         </Setter>
                                     </Trigger>
                                 </Style.Triggers>
@@ -325,18 +323,19 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border
-                                    Height="40"
-                                    Width="150"
-                                    CornerRadius="20"
-                                    Background="{TemplateBinding Background}"
-                                    >
+                Height="40"
+                Width="150"
+                CornerRadius="20"
+                Background="{TemplateBinding Background}"
+                BorderThickness="2"
+                BorderBrush="Transparent">
                                     <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
+                                  HorizontalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-
                     </Button>
+
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
