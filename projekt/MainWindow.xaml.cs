@@ -29,6 +29,9 @@ namespace projekt
         {
             this.Hide();
             new kopapirollo().Show();
+            
+            //check fuggveny --> Backend-ben van e ilyen acc ha es jo e a jelszo
+        
         }
 
         private void ApplyOpacityAnimation(double from, double to, double duration)
