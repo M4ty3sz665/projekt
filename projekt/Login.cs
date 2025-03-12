@@ -10,7 +10,7 @@ public class Login
 
     public async Task<bool> LoginAsync(string username, string password)
     {
-        var url = "http://localhost:3959/api/login"; // Cseréld ki az API elérhetõségére
+        var url = "http://127.0.0.1:3959/api/login"; // IP cím használata
 
         var requestData = new
         {
@@ -25,34 +25,33 @@ public class Login
             var response = await _client.PostAsync(url, content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
+            Console.WriteLine($"Szerver válasza: {responseContent}");
+
             var result = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
 
-            if (response.IsSuccessStatusCode && result.Success)
+            if (response.IsSuccessStatusCode && result != null && result.Success)
             {
-                // Token mentése pl. Properties.Settings vagy Secure Storage segítségével
                 Properties.Settings.Default.UserToken = result.Token;
                 Properties.Settings.Default.Save();
 
-                Console.WriteLine("Sikeres bejelentkezés!");
                 return true;
             }
             else
             {
-                Console.WriteLine($"Hiba: {result.Message}");
+                Console.WriteLine($"Hiba: {result?.Message ?? "Ismeretlen hiba"}");
                 return false;
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Hiba történt: {ex.Message}");
-            return false;
+            throw; // Hogy az UI-ban is megjelenjen
         }
     }
-}
 
-public class LoginResponse
-{
+    public class LoginResponse
+    {
     public string Token { get; set; }
     public bool Success { get; set; }
     public string Message { get; set; }
-}
+    }

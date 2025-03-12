@@ -2,12 +2,13 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using projekt.Models;
 
 namespace projekt
 {
     public partial class MainWindow : Window
     {
-        private readonly LoginService _loginService = new LoginService();
+        public readonly Login _login = new Login();
 
         public MainWindow()
         {
@@ -27,35 +28,32 @@ namespace projekt
 
         private void btnClose_Click(object sender, RoutedEventArgs e) => ApplyCloseAnimation();
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-
             string username = UsernameBox.Text;
             string password = PasswordBox.Password;
 
-            var success = await _loginService.LoginAsync(username, password);
-
-            if (success)
+            try
             {
-                MessageBox.Show("Sikeres bejelentkezés!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
-                // Itt átnavigálhatsz egy másik ablakra
-                new kopapirollo().Show();
-                this.Close();
+                var success = await _login.LoginAsync(username, password);
+
+                if (success)
+                {
+                    MessageBox.Show("Sikeres bejelentkezés!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
+                    new kopapirollo().Show();
+                    this.Close();
+                }
+                else
+                {
+                    StatusText.Text = "Hibás bejelentkezési adatok!";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                StatusText.Text = "Hibás bejelentkezési adatok!";
+                StatusText.Text = $"Hiba történt: {ex.Message}";
             }
-
-            
-            
-            
-            //check fuggveny --> Backend-ben van e ilyen acc ha es jo e a jelszo
-
-
-
-        
         }
+
 
         private void ApplyOpacityAnimation(double from, double to, double duration)
         {
@@ -72,9 +70,6 @@ namespace projekt
 
        
 
-        private async void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
     }
 }
