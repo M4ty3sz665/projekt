@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 public class Login
 {
-    private readonly HttpClient _client = new HttpClient();
+    
 
     public async Task<bool> LoginAsync(string username, string password)
     {

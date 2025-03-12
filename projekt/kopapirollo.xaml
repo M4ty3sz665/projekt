@@ -68,7 +68,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock
-                        Text="Rock-Paper-Scissors"
+                        Text="Rock-Paper-Scissors-Penis"
                         Foreground="DarkGray"
                         FontSize="15 "
                         Grid.Column="0"

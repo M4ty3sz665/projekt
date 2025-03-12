@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace projekt
 {
     /// <summary>
-    /// Interaction logic for kopapirollo.xaml
+    /// Interaction logic for kopapirollo.xaml sigma balls nigger
     /// </summary>
     public partial class kopapirollo : Window
     {
