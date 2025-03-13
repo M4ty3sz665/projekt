@@ -103,18 +103,14 @@ namespace projekt
         }
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
-            ASD regWindow = new ASD();
+            Window1 regWindow = new Window1();
             regWindow.Show();
             this.Close();
         }
 
 
 
-        public static class SessionManager
-        {
-            public static string Username { get; set; }
-            public static string Token { get; set; }
-        }
+       
 
         private void ASD_Click(object sender, RoutedEventArgs e)
         {
