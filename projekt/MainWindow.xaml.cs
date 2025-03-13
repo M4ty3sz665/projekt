@@ -20,7 +20,8 @@ namespace projekt
 {
     public partial class MainWindow : Window
     {
-        
+        private static readonly HttpClient httpClient = new HttpClient();
+
 
         public MainWindow()
         {
@@ -42,21 +43,49 @@ namespace projekt
 
         public async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            string username = txtUser.Text.Trim();
+            string password = txtPass.Password.Trim();
 
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Kérlek, töltsd ki az összes mezőt!");
+                return;
+            }
 
-            HttpClient client = new HttpClient();
+            var loginData = new { username, password };
+            var json = JsonConvert.SerializeObject(loginData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
             try
             {
-                string url = "http//127.0.0.1:3595";
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                string stringResponse = await response.Content.ReadAsStringAsync();
+                // Cseréld ki a megfelelő API URL-re, ha szükséges
+                var response = await httpClient.PostAsync("http://localhost:3959/api/login", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
+                    return;
+                }
+                var responseJson = await response.Content.ReadAsStringAsync();
+                dynamic result = JsonConvert.DeserializeObject(responseJson);
+                if (result.success == true)
+                {
+                    // Mentjük a felhasználó nevét és a token értékét
+                    SessionManager.Username = username;
+                    SessionManager.Token = result.token;
 
+                    // Megnyitjuk a játékablakot
+                    kopapirollo gameWindow = new kopapirollo();
+                    gameWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show("Hiba történt: " + ex.Message);
             }
         }
 
@@ -72,10 +101,24 @@ namespace projekt
             fadeOut.Completed += (s, e) => Application.Current.Shutdown();
             BeginAnimation(OpacityProperty, fadeOut);
         }
-          
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            ASD regWindow = new ASD();
+            regWindow.Show();
+            this.Close();
+        }
 
-       
 
-        
+
+        public static class SessionManager
+        {
+            public static string Username { get; set; }
+            public static string Token { get; set; }
+        }
+
+        private void ASD_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
