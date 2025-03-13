@@ -46,12 +46,18 @@ namespace projekt
 
         }
 
-        private void scissors_Click(object sender, RoutedEventArgs e)
+
+        private async void ResetStatsButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
         {
 
         }
 
-        private void rock_Click(object sender, RoutedEventArgs e)
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
         {
 
         }
